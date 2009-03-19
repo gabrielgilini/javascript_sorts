@@ -1,7 +1,8 @@
-function bench(fn, args){
-    var result,
+function bm(obj){
+    var t, results = {};
+    for(i in obj){
         t = new Date;
-    result = fn.apply(this, [args]);
-    t = new Date - t;
-    return t + 'ms';
+        results[i] = {'arr': obj[i].fn.apply({}, obj[i].args), 'time': new Date - t};
+    }
+    return results;
 }
