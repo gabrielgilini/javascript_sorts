@@ -15,4 +15,15 @@ function mergeSort(arr){
     }
 }
 
-function merge(arrL, arrR){}
+function merge(arrL, arrR){
+    var result = [];
+
+    while(arrL.length && arrR.length){
+        result.push((arrL[0] <= arrR[0])?
+            arrL.shift():
+            arrR.shift()
+        );
+    }
+
+    return result;
+}

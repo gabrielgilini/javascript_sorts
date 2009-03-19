@@ -6,8 +6,9 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <script type="text/javascript" src="array.js"></script>
     <script type="text/javascript" src="benchmark.js"></script>
-    <script type="text/javascript" src="quick.js"></script>
     <script type="text/javascript" src="native.js"></script>
+    <script type="text/javascript" src="quick.js"></script>
+    <script type="text/javascript" src="merge.js"></script>
 
     <script type="text/javascript">
         function appendText(string, father){
@@ -20,15 +21,14 @@
             var arr = randomArr(100, 0, 10000),
                 d = document,
                 resultsEl = d.getElementById('results');
-            /*appendText(
-                'quick sort: ' + bm(quickSort, arr),
-                resultsEl
-            );*/
+
             var results = bm({
                 'native': {'fn': nSort, 'args': [arr]},
-                'quick': {'fn': quickSort, 'args': [arr]}
+                'quick': {'fn': quickSort, 'args': [arr]},
+                'merge': {'fn': mergeSort, 'args': [arr]}
 
             });
+
             for(sName in results){
                 appendText(sName + ': ' + results[sName].time + 'ms', resultsEl);
             }
