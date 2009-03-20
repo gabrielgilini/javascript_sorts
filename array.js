@@ -39,3 +39,14 @@ Array.prototype.swap = function(posA, posB){
     this[posA] = temp;
     return this;
 }
+
+Array.prototype.clone = function(){
+    var cloned = [],
+        len = this.length;
+
+    for(var i = 0; i < len; i++){
+        cloned[i] = this[i];
+    }
+
+    return cloned;
+}

@@ -11,6 +11,7 @@
     <script type="text/javascript" src="merge.js"></script>
     <script type="text/javascript" src="shell.js"></script>
     <script type="text/javascript" src="bubble.js"></script>
+    <script type="text/javascript" src="selection.js"></script>
 
     <script type="text/javascript">
         function appendText(string, father){
@@ -21,16 +22,16 @@
         }
         window.onload = function(){
             var arr = randomArr(100, 0, 10),
-                sortedArr = arr.sort(function(a,b){return a-b}).unique(),
+                sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
                 d = document,
                 resultsEl = d.getElementById('results');
-
             var results = bm({
                 'native': {'fn': nSort, 'args': [arr]},
                 'quick': {'fn': quickSort, 'args': [arr]},
                 'merge': {'fn': mergeSort, 'args': [arr]},
                 'shell': {'fn': shellSort, 'args': [arr]},
-                'bubble': {'fn': bubbleSort, 'args': [arr]}
+                'bubble': {'fn': bubbleSort, 'args': [arr]},
+                'selection': {'fn': selectionSort, 'args': [arr]}
             });
 
             for(sName in results){

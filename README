@@ -1,10 +1,10 @@
 Sort algorithms in JavaScript:
 
 1. QuickSort - Done
-2. MergeSort - Done (broke)
+2. MergeSort - Done
 3. ShellSort - Done
 4. BubbleSort - Done
-5. SelectionSort
+5. SelectionSort - Done
 6. HeapSort
 7. RadixSort
 8. GnomeSort
@@ -12,4 +12,3 @@ Sort algorithms in JavaScript:
 10. BogoSort
 11. BucketSort
 12. CocktailSort
-
