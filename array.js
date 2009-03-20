@@ -32,3 +32,10 @@ Array.prototype.compare = function(arr){
     }
     return true;
 }
+
+Array.prototype.swap = function(posA, posB){
+    var temp = this[posA];
+    this[posB] = this[posA];
+    this[posA] = temp;
+    return this;
+}

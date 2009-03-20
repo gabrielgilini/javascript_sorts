@@ -10,6 +10,7 @@
     <script type="text/javascript" src="quick.js"></script>
     <script type="text/javascript" src="merge.js"></script>
     <script type="text/javascript" src="shell.js"></script>
+    <script type="text/javascript" src="bubble.js"></script>
 
     <script type="text/javascript">
         function appendText(string, father){
@@ -28,7 +29,8 @@
                 'native': {'fn': nSort, 'args': [arr]},
                 'quick': {'fn': quickSort, 'args': [arr]},
                 'merge': {'fn': mergeSort, 'args': [arr]},
-                'shell': {'fn': shellSort, 'args': [arr]}
+                'shell': {'fn': shellSort, 'args': [arr]},
+                'bubble': {'fn': bubbleSort, 'args': [arr]}
             });
 
             for(sName in results){
