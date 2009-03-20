@@ -22,7 +22,7 @@
             father.appendChild(pE);
         }
         window.onload = function(){
-            var arr = randomArr(100, 0, 10),
+            var arr = randomArr(1000, 0, 1000000),
                 sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
                 d = document,
                 resultsEl = d.getElementById('results');
