@@ -6,7 +6,6 @@ function selectionSort(arr){
             if(arr[j] < arr[smallerIndex])
                 smallerIndex = j;
         }
-        //console.log(arr.splice(smallerIndex, 1), arr);
     }
 
     return arr;

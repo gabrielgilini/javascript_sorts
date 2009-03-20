@@ -12,6 +12,7 @@
     <script type="text/javascript" src="shell.js"></script>
     <script type="text/javascript" src="bubble.js"></script>
     <script type="text/javascript" src="selection.js"></script>
+    <script type="text/javascript" src="heap.js"></script>
 
     <script type="text/javascript">
         function appendText(string, father){
@@ -31,7 +32,8 @@
                 'merge': {'fn': mergeSort, 'args': [arr]},
                 'shell': {'fn': shellSort, 'args': [arr]},
                 'bubble': {'fn': bubbleSort, 'args': [arr]},
-                'selection': {'fn': selectionSort, 'args': [arr]}
+                'selection': {'fn': selectionSort, 'args': [arr]},
+                'heap': {'fn': heapSort, 'args': [arr]}
             });
 
             for(sName in results){
