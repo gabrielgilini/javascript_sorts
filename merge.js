@@ -25,5 +25,12 @@ function merge(arrL, arrR){
         );
     }
 
+    while(arrL.length){
+        result.push(arrL.shift());
+    }
+
+    while(arrR.length){
+        result.push(arrR.shift());
+    }
     return result;
 }
