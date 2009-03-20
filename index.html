@@ -22,11 +22,16 @@
             pE.appendChild(tN);
             father.appendChild(pE);
         }
+        function toString(el, i, arr){
+            arr[i] = '' + el;
+        }
         window.onload = function(){
             var arr = randomArr(1000, 0, 1000000).unique(),
                 sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
+                stringArr = arr.clone(),
                 d = document,
                 resultsEl = d.getElementById('results');
+            stringArr.forEach(toString);
             var results = bm({
                 'native': {'fn': nSort, 'args': [arr]},
                 'quick': {'fn': quickSort, 'args': [arr]},
@@ -35,11 +40,7 @@
                 'bubble': {'fn': bubbleSort, 'args': [arr]},
                 'selection': {'fn': selectionSort, 'args': [arr]},
                 'heap': {'fn': heapSort, 'args': [arr]},
-                'radix': {'fn': radixSort, 'args': [arr.clone().forEach(
-                    function(el, i, arr){
-                        arr[i] = '' + el;
-                    }
-                )]}
+                'radix': {'fn': radixSort, 'args': [stringArr]}
             });
 
             for(sName in results){

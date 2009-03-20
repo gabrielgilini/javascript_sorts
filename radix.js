@@ -1,4 +1,5 @@
 function radixSort(arr){ // The arr input should be an array of numeric strings
+    console.debug(arr);
     var len = arr.length,
         buckets = [],
         digit = 0,
@@ -8,7 +9,8 @@ function radixSort(arr){ // The arr input should be an array of numeric strings
     do{
         found = false;
         for(var i = 0; i < len; i++){
-            if(arr[i][digit]){
+            if(arr[i] && arr[i][digit]){
+                if(!buckets[arr[i][digit]]) buckets[arr[i][digit]] = [];
                 buckets[arr[i][digit]].push(arr[i]);
                 found = true;
             }
