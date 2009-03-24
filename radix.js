@@ -18,7 +18,7 @@ function radixSort(arr){ // The arr input should be an array of numeric strings
         arr = [];
         for(var j = 0; j < bLen; j++){
             if(buckets[j]){
-                for(var k = 0, l = buckets[j].len; k < l; k++){
+                for(var k = 0, l = buckets[j].length; k < l; k++){
                     arr.push(buckets[j][k]);
                 }
             }
