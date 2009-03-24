@@ -26,21 +26,21 @@
             arr[i] = '' + el;
         }
         window.onload = function(){
-            var arr = randomArr(1000, 0, 1000000).unique(),
+            var arr = randomArr(10, 0, 5).unique(),
                 sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
                 stringArr = arr.clone(),
                 d = document,
                 resultsEl = d.getElementById('results');
             stringArr.forEach(toString);
             var results = bm({
-                'native': {'fn': nSort, 'args': [arr]},
-                'quick': {'fn': quickSort, 'args': [arr]},
-                'merge': {'fn': mergeSort, 'args': [arr]},
-                'shell': {'fn': shellSort, 'args': [arr]},
-                'bubble': {'fn': bubbleSort, 'args': [arr]},
-                'selection': {'fn': selectionSort, 'args': [arr]},
-                'heap': {'fn': heapSort, 'args': [arr]},
-                'radix': {'fn': radixSort, 'args': [stringArr]}
+                'native': {'fn': nSort, 'args': [arr.clone()]},
+                'quick': {'fn': quickSort, 'args': [arr.clone()]},
+                'merge': {'fn': mergeSort, 'args': [arr.clone()]},
+                'shell': {'fn': shellSort, 'args': [arr.clone()]},
+                'bubble': {'fn': bubbleSort, 'args': [arr.clone()]},
+                'selection': {'fn': selectionSort, 'args': [arr.clone()]},
+                'heap': {'fn': heapSort, 'args': [arr.clone()]},
+                'radix': {'fn': radixSort, 'args': [stringArr.clone()]}
             });
 
             for(sName in results){

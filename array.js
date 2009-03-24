@@ -39,7 +39,15 @@ Array.prototype.unique = function(){
     }
     return out || this;
 }
-
+Array.prototype.isUnique = function(){
+    for(var i = 0, j = this.length; i < j; i++){
+        for(var k = 0; k < j; k++){
+            if(i != k && this[i] == this[k])
+                return false;
+        }
+    }
+    return true;
+}
 Array.prototype.compare = function(arr){
     for(var i = 0, j = this.length; i < j; i++){
         if(this[i] != arr[i])
@@ -49,7 +57,7 @@ Array.prototype.compare = function(arr){
 }
 
 Array.prototype.swap = function(posA, posB){
-    var temp = this[posA];
+    var temp = this[posB];
     this[posB] = this[posA];
     this[posA] = temp;
     return this;

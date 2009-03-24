@@ -1,5 +1,4 @@
 function radixSort(arr){ // The arr input should be an array of numeric strings
-    console.debug(arr);
     var len = arr.length,
         buckets = [],
         digit = 0,
