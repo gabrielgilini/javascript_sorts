@@ -15,6 +15,7 @@
     <script type="text/javascript" src="selection.js"></script>
     <script type="text/javascript" src="heap.js"></script>
     <script type="text/javascript" src="radix.js"></script>
+    <script type="text/javascript" src="gnome.js"></script>
 
     <script type="text/javascript">
         function appendText(string, father){
@@ -24,12 +25,15 @@
             father.appendChild(pE);
         }
         window.onload = function(){
-            var arr = randomArr(10, 0, 10000).unique(),
+            var min = 0, max = 10000, size = 1000,
+                arr = randomArr(size, min, max).unique(),
                 sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
                 stringArr = arr.clone().numberToString(),
                 d = document,
                 resultsEl = d.getElementById('results'),
                 maxD = stringArr.getMaxStringLength();
+
+            appendText('Testes realizados com arrays randômicas de '+size+' inteiros entre '+min+' e '+max+'.', d.getElementById('res-title'))
             //stringArr.forEach(toString);
             //maxD = stringArr.getMaxStringLength();
             var results = bm({
@@ -44,7 +48,8 @@
                     function(el, i, arr){
                         arr[i] = el.padLeft(maxD, '0');
                     }
-                )]}
+                )]},
+                'gnome': {'fn': gnomeSort, 'args': [arr.clone()]}
             });
 
             for(sName in results){
@@ -58,8 +63,7 @@
 </head>
 <body>
     <div id="results">
-        <p>
-            Testes realizados com arrays randômicas de 1000 inteiros entre 0 e 1000000.
+        <p id="res-title">
         </p>
     </div>
 </body>
