@@ -13,19 +13,18 @@ function randomArr(len, min, max){
     return arr;
 }
 
-// Mozilla's forEach
-if (!Array.prototype.forEach){
-    Array.prototype.forEach = function(fun /*, thisp*/){
-        var len = this.length >>> 0;
-        if (typeof fun != "function")
-            throw new TypeError();
-        var thisp = arguments[1];
-        for (var i = 0; i < len; i++){
-            if (i in this)
-                fun.call(thisp, this[i], i, this);
-        }
-    };
-}
+// adapted from Mozilla's forEach
+Array.prototype.forEach = function(fun /*, thisp*/){
+    var len = this.length >>> 0;
+    if (typeof fun != "function")
+        throw new TypeError();
+    var thisp = arguments[1];
+    for (var i = 0; i < len; i++){
+        if (i in this)
+            fun.call(thisp, this[i], i, this);
+    }
+    return this;
+};
 
 
 Array.prototype.unique = function(){
@@ -72,4 +71,27 @@ Array.prototype.clone = function(){
     }
 
     return cloned;
+}
+
+Array.prototype.getMaxStringLength = function(){
+    var len = this.length,
+        maxL = 0;
+
+    for(var i = 0; i < len; i++){
+        if(typeof this[i] == 'string' && this[i].length > maxL)
+            maxL = this[i].length;
+    }
+
+    return maxL;
+}
+
+Array.prototype.numberToString = function(){
+    var len = this.length;
+
+    for(var i = 0; i < len; i++){
+        if(typeof this[i] == 'number')
+            this[i] += '';
+    }
+
+    return this;
 }

@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta http-equiv="Cache-Control" content="No-Cache">
     <script type="text/javascript" src="array.js"></script>
+    <script type="text/javascript" src="string.js"></script>
     <script type="text/javascript" src="benchmark.js"></script>
     <script type="text/javascript" src="native.js"></script>
     <script type="text/javascript" src="quick.js"></script>
@@ -22,16 +23,15 @@
             pE.appendChild(tN);
             father.appendChild(pE);
         }
-        function toString(el, i, arr){
-            arr[i] = '' + el;
-        }
         window.onload = function(){
-            var arr = randomArr(10, 0, 5).unique(),
+            var arr = randomArr(10, 0, 10000).unique(),
                 sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
-                stringArr = arr.clone(),
+                stringArr = arr.clone().numberToString(),
                 d = document,
-                resultsEl = d.getElementById('results');
-            stringArr.forEach(toString);
+                resultsEl = d.getElementById('results'),
+                maxD = stringArr.getMaxStringLength();
+            //stringArr.forEach(toString);
+            //maxD = stringArr.getMaxStringLength();
             var results = bm({
                 'native': {'fn': nSort, 'args': [arr.clone()]},
                 'quick': {'fn': quickSort, 'args': [arr.clone()]},
@@ -40,7 +40,11 @@
                 'bubble': {'fn': bubbleSort, 'args': [arr.clone()]},
                 'selection': {'fn': selectionSort, 'args': [arr.clone()]},
                 'heap': {'fn': heapSort, 'args': [arr.clone()]},
-                'radix': {'fn': radixSort, 'args': [stringArr.clone()]}
+                'radix': {'fn': radixSort, 'args': [stringArr.clone().forEach(
+                    function(el, i, arr){
+                        arr[i] = el.padLeft(maxD, '0');
+                    }
+                )]}
             });
 
             for(sName in results){
