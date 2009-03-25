@@ -16,6 +16,7 @@
     <script type="text/javascript" src="heap.js"></script>
     <script type="text/javascript" src="radix.js"></script>
     <script type="text/javascript" src="gnome.js"></script>
+    <script type="text/javascript" src="count.js"></script>
 
     <script type="text/javascript">
         function appendText(string, father){
@@ -49,7 +50,8 @@
                         arr[i] = el.padLeft(maxD, '0');
                     }
                 )]},
-                'gnome': {'fn': gnomeSort, 'args': [arr.clone()]}
+                'gnome': {'fn': gnomeSort, 'args': [arr.clone()]},
+                'count': {'fn': countSort, 'args': [arr.clone()]}
             });
 
             for(sName in results){
