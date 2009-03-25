@@ -107,12 +107,39 @@ Array.prototype.isSorted = function(){
     return true;
 }
 
+//Array.prototype.shuffle = function(){
+//    var len = this.length,
+//        shuffled = [],
+//        rIndex;
+//
+//    for(var i = len, j; i; j = parseInt(Math.random() * i, 10), this.swap(--i, j));
+//
+//    return this;
+//}
+
 Array.prototype.shuffle = function(){
     var len = this.length,
-        shuffled = [],
-        rIndex;
+        i = len,
+        j, temp;
 
-    for(var i = len, j; i; j = parseInt(Math.random() * i, 10), this.swap(--i, j));
+    while(--i){
+        j = Math.floor(Math.random() * (i + 1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
 
     return this;
+}
+
+Array.prototype.isMaxHeap = function(){
+    var len = this.length;
+
+    for(var i = 1, j; i < len; ++i){
+        j = Math.floor((i - 1)/2);
+        if(this[j] < this[i])
+            return false;
+    }
+
+    return true;
 }

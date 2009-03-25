@@ -1,41 +1,44 @@
+Array.prototype.sift = function(i){
+    var l = this.length - 1,
+        j = 2 * i,
+        t = this[i];
+
+    while(j <= l){
+        if(j < l && this[j] < this[j + 1])
+            ++j;
+        if(t >= this[j])
+            break;
+        this[i] = this[j];
+        i = j;
+        j = 2 * i;
+    }
+
+    this[i] = t;
+
+    return this;
+}
+
+Array.prototype.heapify = function(){
+    var len = this.length,
+        i = Math.floor(len/2);
+
+    while(i >= 0){
+        this.sift(i--);
+    }
+
+    return this;
+}
+
 function heapSort(arr){
     var len = arr.length,
         end = len - 1;
-    arr = heapify(arr.clone());
 
-    while(end > 0){
+    arr.heapify();
+
+    /*while(end > 0){
         arr.swap(end, 0);
         --end;
-        siftDown(arr, 0, end);
-    }
+        arr.sift(end);
+    }*/
     return arr;
-}
-
-function heapify(arr){
-    var len = arr.length,
-        start = (len - 2)/2;
-
-    while(start >= 0){
-        siftDown(arr, start);
-        --start;
-    }
-    return arr;
-}
-
-function siftDown(arr, start, end){
-    var root = start,
-        child;
-    end = end || arr.length - 1;
-
-    while((child = root * 2 + 1) <= end){
-        if((child + 1) <= end && arr[child] < arr[child + 1])
-            ++child;
-        if(arr[root] < arr[child]){
-            arr.swap(root, child);
-            root = child;
-        }
-        else{
-            return;
-        }
-    }
 }

@@ -1,6 +1,6 @@
 function bogoSort(arr){
     while(!arr.isSorted())
-        arr = arr.shuffle();
+        arr.shuffle();
 
     return arr;
 }
