@@ -95,3 +95,29 @@ Array.prototype.numberToString = function(){
 
     return this;
 }
+
+Array.prototype.isSorted = function(){
+    var len = this.length;
+
+    for(var i = 0; i < len; i++){
+        if(typeof this[ i + 1 ] == 'number' && this[ i + 1 ] < this[i])
+            return false;
+    }
+
+    return true;
+}
+
+Array.prototype.shuffle = function(){
+    var len = this.length,
+        shuffled = [],
+        rIndex;
+
+    for(var i = 0; i < len; i++){
+        do{
+            rIndex = Math.floor(Math.random() * len);
+        }while(shuffled[rIndex]);
+        shuffled[rIndex] = this[i];
+    }
+
+    return shuffled;
+}

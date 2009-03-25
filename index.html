@@ -17,6 +17,7 @@
     <script type="text/javascript" src="radix.js"></script>
     <script type="text/javascript" src="gnome.js"></script>
     <script type="text/javascript" src="count.js"></script>
+    <script type="text/javascript" src="bogo.js"></script>
 
     <script type="text/javascript">
         function appendText(string, father){
@@ -26,7 +27,7 @@
             father.appendChild(pE);
         }
         window.onload = function(){
-            var min = 0, max = 10000, size = 1000,
+            var min = 0, max = 10, size = 4,
                 arr = randomArr(size, min, max).unique(),
                 sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
                 stringArr = arr.clone().numberToString(),
@@ -51,7 +52,8 @@
                     }
                 )]},
                 'gnome': {'fn': gnomeSort, 'args': [arr.clone()]},
-                'count': {'fn': countSort, 'args': [arr.clone()]}
+                'count': {'fn': countSort, 'args': [arr.clone()]},
+                'bogo': {'fn': bogoSort, 'args': [arr.clone()]}
             });
 
             for(sName in results){
