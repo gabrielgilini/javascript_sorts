@@ -112,12 +112,7 @@ Array.prototype.shuffle = function(){
         shuffled = [],
         rIndex;
 
-    for(var i = 0; i < len; i++){
-        do{
-            rIndex = Math.floor(Math.random() * len);
-        }while(shuffled[rIndex]);
-        shuffled[rIndex] = this[i];
-    }
+    for(var i = len, j; i; j = parseInt(Math.random() * i, 10), this.swap(--i, j));
 
-    return shuffled;
+    return this;
 }
