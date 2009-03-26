@@ -49,11 +49,12 @@
         }
         var workerPool, childId;
 
-        function init(min, max, size){
+        function init(min, max, size, bogo){
             var d = document,
                 min = parseInt(min, 10) || 0,
-                max = parseInt(max, 10) || 50,
-                size = parseInt(size, 10) || 10,
+                max = parseInt(max, 10) || 1000,
+                size = parseInt(size, 10) || 100,
+                bogo = (bogo && (size >= 10)) ? confirm('O bogoSort provavelmente vai demorar MUITO pra '+size+' itens.\nTem certeza que quer executá-lo?') : bogo;
                 resultsEl = d.getElementById('results'),
                 arr = randomArr(size, min, max).unique(),
                 sortedArr = arr.clone().sort(function(a,b){return a-b}).unique(),
@@ -76,10 +77,13 @@
                 'radix': {'fn': radixSort, 'args': [stringArr.clone()]},
                 'gnome': {'fn': gnomeSort, 'args': [arr.clone()]},
                 'count': {'fn': countSort, 'args': [arr.clone()]},
-                'bogo': {'fn': bogoSort, 'args': [arr.clone()]},
                 'bucket': {'fn': bucketSort, 'args': [stringArr.clone()]},
                 'cocktail': {'fn': cocktailSort, 'args': [arr.clone()]}
             };
+
+            if(bogo){
+                tests.bogo = {'fn': bogoSort, 'args': [arr.clone()]};
+            }
             var results = bm(tests);
             //try{
             //    workerPool = google.gears.factory.create('beta.workerpool');
@@ -101,18 +105,17 @@
                     var txt = sName + ': ' + results[sName].time + 'ms' + ' -> ';
                     txt += (sortedArr.compare(results[sName].arr.unique()))?'PASS':'FAIL';
                     appendText(txt, resultsEl);
-                    console.log(results[sName]);
                 }
             //}
         }
     </script>
 </head>
 <body>
-    <form action='#' onsubmit='init(this.min.value, this.max.value, this.size.value); return false;'>
+    <form action='#' onsubmit='init(this.min.value, this.max.value, this.size.value, this.bogo.checked); return false;'>
         <p><label for='min'>Valor mínimo</label><br><input type='text' name='min' id='min'></p>
         <p><label for='max'>Valor máximo</label><br><input type='text' name='max' id='max'></p>
         <p><label for='size'>Tamanho da array</label><br><input type='text' name='size' id='size'></p>
-
+        <p><label for='bogo'>Executar bogoSort()?</label><input type='checkbox' name='bogo' id='bogo'></p>
         <input type='submit' value='init()'>
     </form>
     <div id="results">
